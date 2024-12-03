@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido a EcoTrans</title>
+    <style>
+        body { margin: 0; font-family: Arial, sans-serif; background-color: #f4f4f4; }
+        header { background-color: #007BFF; color: white; display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; }
+        header .app-name { font-size: 1.5em; font-weight: bold; }
+        header nav a { color: white; text-decoration: none; font-weight: bold; }
+        .login-container { max-width: 400px; margin: 50px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); }
+        .login-container h2 { margin: 0 0 20px; text-align: center; }
+        .login-container label { display: block; margin: 10px 0 5px; }
+        .login-container input[type="text"], 
+        .login-container input[type="password"] { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; }
+        .login-container button { width: 100%; padding: 10px; background-color: #007BFF; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 1em; }
+        .login-container button:hover { background-color: #0056b3; }
+        .error-message { color: red; text-align: center; margin-top: 10px; display: none; }
+    </style>
+</head>
+<body>
+    <!-- Encabezado -->
+    <header>
+        <div class="app-name">EcoTrans</div>
+    </header>
+
+    <!-- Formulario de Inicio de Sesión -->
+    <div class="login-container">
+        <h2>Bienvenido a EcoTrans</h2>
+        <form id="login-form">
+            <label for="username">Usuario</label>
+            <input type="text" id="username" placeholder="Ingrese su usuario" required>
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" placeholder="Ingrese su contraseña" required>
+            <button type="submit">Iniciar Sesión</button>
+            <p class="error-message" id="error-message">Usuario o contraseña incorrectos</p>
+        </form>
+    </div>
+
+    <script>
+        // Usuario precargado
+        const predefinedUser = {
+            username: "marcos suarez",
+            password: "123456"
+        };
+
+        // Manejador del formulario
+        document.getElementById("login-form").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Obtener valores del formulario
+            const username = document.getElementById("username").value.toLowerCase();
+            const password = document.getElementById("password").value;
+
+            // Validar usuario
+            if (username === predefinedUser.username && password === predefinedUser.password) {
+                // Redirigir a la pantalla de Gestión de Usuarios
+                window.location.href = "usuario_gestion.html";
+            } else {
+                // Mostrar mensaje de error
+                document.getElementById("error-message").style.display = "block";
+            }
+        });
+    </script>
+</body>
+</html>
+

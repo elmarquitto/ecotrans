@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoreo de Pedidos - EcoTrans</title>
+    <style>
+        /* Estilo general */
+        body { margin: 0; font-family: Arial, sans-serif; background-color: #f9f9f9; }
+        header { background-color: #007BFF; color: white; display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); }
+        header .app-name { font-size: 1.5em; font-weight: bold; }
+        header nav { display: flex; gap: 15px; }
+        header nav a { color: white; text-decoration: none; font-size: 1em; font-weight: 500; }
+        header nav a:hover { text-decoration: underline; }
+        .content { padding: 20px; }
+        .order-list { margin: 20px auto; width: 80%; }
+        .order-item { margin: 10px 0; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: white; }
+    </style>
+</head>
+<body>
+    <!-- Encabezado -->
+    <header>
+    <div class="app-name">EcoTrans</div>
+        <nav>
+            <a href="cargas.html">Pedir Cargas</a>
+            <a href="monitorear.html">Monitorear Recorridos</a>
+            <a href="admin_flotas.html">Flotas</a>
+            <a href="admin_vehiculos.html">Vehículos</a>
+            <a href="admin_pedidos.html">Pedidos</a>
+            <a href="usuario_gestion.html">Usuarios</a>
+        </nav>
+    </header>
+
+
+    <!-- Contenido Principal -->
+    <div class="content">
+        <h1>Monitoreo de Pedidos</h1>
+
+        <!-- Lista de Pedidos -->
+        <div class="order-list">
+            <div class="order-item">
+                <p><strong>Pedido ID:</strong> 12345</p>
+                <p><strong>Estado:</strong> En Proceso</p>
+                <p><strong>Ruta:</strong> Ciudad de Mendoza → Rivadavia, Mendoza</p>
+                <button>Modificar</button>
+            </div>
+            <div class="order-item">
+                <p><strong>Pedido ID:</strong> 12346</p>
+                <p><strong>Estado:</strong> Entregado</p>
+                <p><strong>Ruta:</strong> Mendoza → San Rafael</p>
+                <button>Modificar</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

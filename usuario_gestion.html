@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Usuario - EcoTrans</title>
+    <style>
+        body { margin: 0; font-family: Arial, sans-serif; background-color: #f4f4f4; }
+        header { background-color: #007BFF; color: white; display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; }
+        header .app-name { font-size: 1.5em; font-weight: bold; }
+        header nav { display: flex; gap: 15px; }
+        header nav a { color: white; text-decoration: none; font-weight: bold; }
+        header nav a:hover { text-decoration: underline; }
+        .content { padding: 20px; }
+        .profile-section, .routes-section { margin: 20px auto; width: 80%; background-color: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); padding: 20px; }
+        .profile-section h2, .routes-section h2 { margin-top: 0; }
+        .routes-list { list-style-type: none; padding: 0; }
+        .routes-list li { margin: 10px 0; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9; }
+        .routes-list li h3 { margin: 0; }
+    </style>
+</head>
+<body>
+    <!-- Encabezado -->
+    <header>
+        <div class="app-name">EcoTrans</div>
+            <nav>
+                <a href="cargas.html">Pedir Cargas</a>
+                <a href="monitorear.html">Monitorear Recorridos</a>
+                <a href="admin_flotas.html">Flotas</a>
+                <a href="admin_vehiculos.html">Vehículos</a>
+                <a href="admin_pedidos.html">Pedidos</a>
+                <a href="usuario_gestion.html">Usuarios</a>
+            </nav>
+    </header>
+
+
+    <!-- Contenido Principal -->
+    <div class="content">
+        <!-- Sección de Perfil -->
+        <div class="profile-section">
+            <h2>Perfil de Usuario</h2>
+            <p><strong>Nombre:</strong> Juan Pérez</p>
+            <p><strong>ID del Conductor:</strong> 12345</p>
+            <p><strong>Email:</strong> juan.perez@ecotrans.com</p>
+            <p><strong>Teléfono:</strong> +54 9 261 123 4567</p>
+        </div>
+
+        <!-- Sección de Rutas Asignadas -->
+        <div class="routes-section">
+            <h2>Rutas Asignadas</h2>
+            <ul class="routes-list">
+                <li>
+                    <h3>Ruta 1</h3>
+                    <p><strong>Origen:</strong> Ciudad de Mendoza</p>
+                    <p><strong>Destino:</strong> San Rafael</p>
+                    <p><strong>Fecha:</strong> 2024-12-05</p>
+                </li>
+                <li>
+                    <h3>Ruta 2</h3>
+                    <p><strong>Origen:</strong> Maipú</p>
+                    <p><strong>Destino:</strong> Tunuyán</p>
+                    <p><strong>Fecha:</strong> 2024-12-06</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

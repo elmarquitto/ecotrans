@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Flotas - EcoTrans</title>
+    <style>
+        /* Estilo general */
+        body { margin: 0; font-family: Arial, sans-serif; background-color: #f9f9f9; }
+        header { background-color: #007BFF; color: white; display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); }
+        header .app-name { font-size: 1.5em; font-weight: bold; }
+        header nav { display: flex; gap: 15px; }
+        header nav a { color: white; text-decoration: none; font-size: 1em; font-weight: 500; }
+        header nav a:hover { text-decoration: underline; }
+        .content { padding: 20px; }
+        .fleet-list { margin: 20px auto; width: 80%; }
+        .fleet-item { margin: 10px 0; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: white; display: flex; justify-content: space-between; align-items: center; }
+        .fleet-item button { background-color: #007BFF; color: white; padding: 5px 10px; border: none; cursor: pointer; }
+        .fleet-item button:hover { background-color: #0056b3; }
+        .form-container { margin: 20px auto; width: 80%; }
+        .form-container input, .form-container select, .form-container button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        /* Estilo de la ventana flotante */
+        .details-container {
+            position: fixed;
+            top: 50px;
+            right: 0;
+            width: 300px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+            display: none; /* Ocultamos la ventana flotante por defecto */
+            border-radius: 5px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .details-container h3 {
+            margin-top: 0;
+        }
+        .details-container ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .details-container ul li {
+            margin: 5px 0;
+        }
+        .details-container .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        .details-container .close-btn:hover {
+            background-color: #e53935;
+        }
+    </style>
+</head>
+<body>
+    <!-- Encabezado -->
+    <header>
+    <div class="app-name">EcoTrans</div>
+        <nav>
+            <a href="cargas.html">Pedir Cargas</a>
+            <a href="monitorear.html">Monitorear Recorridos</a>
+            <a href="admin_flotas.html">Flotas</a>
+            <a href="admin_vehiculos.html">Vehículos</a>
+            <a href="admin_pedidos.html">Pedidos</a>
+            <a href="usuario_gestion.html">Usuarios</a>
+        </nav>
+    </header>
+
+
+    <!-- Contenido Principal -->
+    <div class="content">
+        <h1>Gestión de Flotas</h1>
+
+        <!-- Formulario de Agregar Flota -->
+        <div class="form-container">
+            <h2>Agregar Nueva Flota</h2>
+            <label for="flota-nombre">Nombre de Flota:</label>
+            <input type="text" id="flota-nombre" placeholder="Ingrese nombre de la flota">
+            <label for="flota-capacidad">Capacidad Total:</label>
+            <input type="number" id="flota-capacidad" placeholder="Ingrese capacidad total de la flota">
+            <button>Guardar Flota</button>
+        </div>
+
+        <!-- Lista de Flotas -->
+        <div class="fleet-list">
+            <!-- Flota A -->
+            <div class="fleet-item">
+                <div>
+                    <h3>Flota A</h3>
+                    <p><strong>Capacidad Total:</strong> 30 vehículos</p>
+                </div>
+                <div>
+                    <button onclick="verDetalles(1, 30)">Ver Detalles</button>
+                </div>
+            </div>
+            <!-- Flota B -->
+            <div class="fleet-item">
+                <div>
+                    <h3>Flota B</h3>
+                    <p><strong>Capacidad Total:</strong> 20 vehículos</p>
+                </div>
+                <div>
+                    <button onclick="verDetalles(2, 20)">Ver Detalles</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detalles de la Flota (Ventana Flotante) -->
+    <div id="detalles-1" class="details-container">
+        <button class="close-btn" onclick="cerrarDetalles()">X</button>
+        <h3>Detalles de la Flota A</h3>
+        <ul id="vehiculos-flota-1">
+            <!-- Los IDs se generarán dinámicamente aquí -->
+        </ul>
+    </div>
+
+    <div id="detalles-2" class="details-container">
+        <button class="close-btn" onclick="cerrarDetalles()">X</button>
+        <h3>Detalles de la Flota B</h3>
+        <ul id="vehiculos-flota-2">
+            <!-- Los IDs se generarán dinámicamente aquí -->
+        </ul>
+    </div>
+
+    <script>
+        // Función para mostrar los detalles de una flota
+        function verDetalles(flotasId, capacidadTotal) {
+            // Ocultar todos los detalles
+            const detalles = document.querySelectorAll('.details-container');
+            detalles.forEach(detalle => detalle.style.display = 'none');
+
+            // Mostrar detalles de la flota seleccionada
+            const detalleSeleccionado = document.getElementById('detalles-' + flotasId);
+            detalleSeleccionado.style.display = 'block';
+
+            // Generar los IDs de los vehículos dinámicamente
+            const ulElement = document.getElementById('vehiculos-flota-' + flotasId);
+            ulElement.innerHTML = ''; // Limpiar la lista antes de agregar los nuevos IDs
+
+            // Agregar los IDs de vehículos a la lista con formato secuencial
+            for (let i = 1; i <= capacidadTotal; i++) {
+                const li = document.createElement('li');
+                const idVehiculo = i.toString().padStart(4, '0'); // Generar ID con 4 dígitos (ej. 0001, 0002)
+                li.textContent = idVehiculo;
+                ulElement.appendChild(li);
+            }
+        }
+
+        // Función para cerrar la ventana flotante de detalles
+        function cerrarDetalles() {
+            const detalles = document.querySelectorAll('.details-container');
+            detalles.forEach(detalle => detalle.style.display = 'none');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Vehículos - EcoTrans</title>
+    <style>
+        /* Estilo general */
+        body { margin: 0; font-family: Arial, sans-serif; background-color: #f9f9f9; }
+        header { background-color: #007BFF; color: white; display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); }
+        header .app-name { font-size: 1.5em; font-weight: bold; }
+        header nav { display: flex; gap: 15px; }
+        header nav a { color: white; text-decoration: none; font-size: 1em; font-weight: 500; }
+        header nav a:hover { text-decoration: underline; }
+        .content { padding: 20px; }
+        .vehicle-list, .form-container { margin: 20px auto; width: 80%; }
+        .vehicle-item { margin: 10px 0; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: white; display: flex; justify-content: space-between; align-items: center; }
+        .vehicle-item button { background-color: #007BFF; color: white; padding: 5px 10px; border: none; cursor: pointer; }
+        .vehicle-item button:hover { background-color: #0056b3; }
+        .form-container input, .form-container select, .form-container button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Encabezado -->
+    <header>
+    <div class="app-name">EcoTrans</div>
+        <nav>
+            <a href="cargas.html">Pedir Cargas</a>
+            <a href="monitorear.html">Monitorear Recorridos</a>
+            <a href="admin_flotas.html">Flotas</a>
+            <a href="admin_vehiculos.html">Vehículos</a>
+            <a href="admin_pedidos.html">Pedidos</a>
+            <a href="usuario_gestion.html">Usuarios</a>
+        </nav>
+    </header>
+
+
+    <!-- Contenido Principal -->
+    <div class="content">
+        <h1>Gestión de Vehículos</h1>
+
+        <!-- Formulario de Agregar Vehículo -->
+        <div class="form-container">
+            <h2>Agregar Nuevo Vehículo</h2>
+            <label for="vehiculo-id">ID del Vehículo:</label>
+            <input type="text" id="vehiculo-id" placeholder="Ingrese ID del vehículo">
+            <label for="vehiculo-modelo">Modelo del Vehículo:</label>
+            <input type="text" id="vehiculo-modelo" placeholder="Ingrese modelo del vehículo">
+            <button onclick="agregarVehiculo()">Guardar Vehículo</button>
+        </div>
+
+        <!-- Lista de Vehículos -->
+        <div class="vehicle-list">
+            <h2>Lista de Vehículos</h2>
+            <!-- Ejemplo de Vehículo -->
+            <div class="vehicle-item">
+                <div>
+                    <h3>ID: 0001</h3>
+                    <p><strong>Modelo:</strong> Camión Volvo FH16</p>
+                </div>
+                <div>
+                    <button onclick="verDetallesVehiculo('0001')">Ver Detalles</button>
+                    <button onclick="eliminarVehiculo('0001')">Eliminar</button>
+                    <button onclick="asignarFlota('0001')">Asignar a Flota</button>
+                </div>
+            </div>
+            <!-- Más vehículos se agregarán dinámicamente -->
+        </div>
+    </div>
+
+    <script>
+        // Función para agregar un vehículo
+        function agregarVehiculo() {
+            const id = document.getElementById('vehiculo-id').value.trim();
+            const modelo = document.getElementById('vehiculo-modelo').value.trim();
+
+            if (id === "" || modelo === "") {
+                alert("Por favor, complete todos los campos.");
+                return;
+            }
+
+            // Crear un nuevo elemento para la lista
+            const vehicleList = document.querySelector('.vehicle-list');
+            const newVehicle = document.createElement('div');
+            newVehicle.className = 'vehicle-item';
+            newVehicle.innerHTML = `
+                <div>
+                    <h3>ID: ${id}</h3>
+                    <p><strong>Modelo:</strong> ${modelo}</p>
+                </div>
+                <div>
+                    <button onclick="verDetallesVehiculo('${id}')">Ver Detalles</button>
+                    <button onclick="eliminarVehiculo('${id}')">Eliminar</button>
+                    <button onclick="asignarFlota('${id}')">Asignar a Flota</button>
+                </div>
+            `;
+            vehicleList.appendChild(newVehicle);
+
+            // Limpiar el formulario
+            document.getElementById('vehiculo-id').value = "";
+            document.getElementById('vehiculo-modelo').value = "";
+        }
+
+        // Función para ver detalles de un vehículo
+        function verDetallesVehiculo(id) {
+            alert(`Mostrando detalles del vehículo con ID: ${id}`);
+        }
+
+        // Función para eliminar un vehículo
+        function eliminarVehiculo(id) {
+            const vehicleItem = document.querySelector(`.vehicle-item h3:contains('${id}')`).parentElement.parentElement;
+            if (vehicleItem) vehicleItem.remove();
+        }
+
+        // Función para asignar un vehículo a una flota
+        function asignarFlota(id) {
+            const flota = prompt(`Asigne el vehículo con ID: ${id} a una flota (ingrese el nombre de la flota):`);
+            if (flota) alert(`Vehículo con ID: ${id} asignado a la flota: ${flota}`);
+        }
+    </script>
+</body>
+</html>
